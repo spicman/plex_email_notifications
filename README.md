@@ -117,9 +117,11 @@ Before you begin, ensure you have the following installed:
 
 ## Contributing
 
-[Describe how others can contribute to your project.]
+Do what you like with this :)
 
 ## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ```
 ################################################################
