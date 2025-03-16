@@ -173,3 +173,16 @@ plex_email_notifications/
 └── requirements.txt
 ```
 
+Some Screenshots:
+
+![image](https://github.com/user-attachments/assets/1000b927-0edf-407b-abd2-a3b30391f332)
+![image](https://github.com/user-attachments/assets/0efa8cd8-6961-4698-9263-207c57a54176)
+![image](https://github.com/user-attachments/assets/ee87d833-8753-482c-a169-35b71b673ff2)
+![image](https://github.com/user-attachments/assets/847c5d69-29fd-4194-916b-b9a589789880)
+![image](https://github.com/user-attachments/assets/06ec58b7-2e2d-4e49-9875-74979e57e4a1)
+![image](https://github.com/user-attachments/assets/cc8951ff-a9cb-45e1-8e2b-3b07a759a56f)
+
+
+
+
+
