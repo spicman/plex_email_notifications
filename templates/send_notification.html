@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Send Notification{% endblock %}
+
+{% block content %}
+    <h1>Send a Plex Notification</h1>
+     {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('send_notification') }}" method="post">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required><br><br>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea><br><br>
+        <button type="submit" class="standard-button template-notification-button">Send Notification</button>
+    </form>
+{% endblock %}

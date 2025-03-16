@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      FLASK_APP: app.py
+      FLASK_DEBUG: 1
+      EMAIL_HEADER_IMAGE_URL: ${EMAIL_HEADER_IMAGE_URL} #Pass it from the .env file
+    # restart: always

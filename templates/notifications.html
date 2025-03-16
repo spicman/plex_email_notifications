@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Notifications{% endblock %}
+
+{% block content %}
+    <h1>Admin Notification Options</h1>
+    <div class="admin-container">
+        <div class="links admin-notifications-links">
+            <a href="{{ url_for('template_notifications') }}" class="standard-button">Templates</a>
+            <a href="{{ url_for('send_notification') }}" class="standard-button">Adhoc</a>
+            <a href="{{ url_for('notification_management') }}" class="standard-button">Management</a>
+        </div>
+    </div>
+{% endblock %}

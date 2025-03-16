@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.log
+.git/
+.venv/  # Very important to exclude the virtual environment!
+database.db # Optionally ignore your development database

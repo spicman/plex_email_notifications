@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Email Settings{% endblock %}
+
+{% block content %}
+    <h1>Email Settings</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('email_settings') }}" method="post">
+        <label for="email_host">Email Host:</label>
+        <input type="text" id="email_host" name="email_host" value="{{ settings.email_host }}" required><br><br>
+
+        <label for="email_port">Email Port:</label>
+        <input type="number" id="email_port" name="email_port" value="{{ settings.email_port }}" required><br><br>
+
+        <label for="email_user">Email User:</label>
+        <input type="text" id="email_user" name="email_user" value="{{ settings.email_user }}" required><br><br>
+
+        <label for="email_password">Email Password:</label>
+        <div class="password-container">
+            <input type="password" id="email_password" name="email_password" value="{{ settings.email_password }}">
+            <button type="button" id="togglePassword" class="standard-button template-notification-button"></button>
+        </div>
+        <br><br>
+
+        <button type="submit" class="standard-button template-notification-button">Update Settings</button>
+    </form>
+
+    <style>
+        .password-container {
+            position: relative;
+        }
+
+        #togglePassword {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 8px 12px;
+            border: none;
+            background-color: #ddd;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+    const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#email_password');
+
+            togglePassword.addEventListener('click', function (e) {
+                // Toggle the type attribute
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+
+                // Toggle the icon based on password visibility
+                if (type === 'password') {
+                    togglePassword.innerHTML = '<img src="{{ url_for('static', filename='icons/eye-slash.svg') }}" alt="Show Password">';
+                } else {
+                    togglePassword.innerHTML = '<img src="{{ url_for('static', filename='icons/eye.svg') }}" alt="Hide Password">';
+                }
+            });
+
+            // Initialize the button with the eye-slash icon on page load
+            togglePassword.innerHTML = '<img src="{{ url_for('static', filename='icons/eye-slash.svg') }}" alt="Show Password">';
+    </script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Plex Email Notifications{% endblock %}
+
+{% block content %}
+    <h1>Plex Email Notifications</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <p>Welcome to the Plex server notification system. Keep your family informed!</p>
+
+    {% if current_user.is_authenticated %}
+        <p>Logged in as: {{ current_user.email }}</p>
+        <div class="links">
+            <a href="{{ url_for('options') }}" class="standard-button">Options</a>
+            <a href="{{ url_for('subscribe') }}" class="standard-button">Subscribe to Notifications</a>
+            {% if current_user.is_admin_user() %}
+                <a href="{{ url_for('notifications') }}" class="standard-button">Notifications</a>  <!-- Changed link -->
+            {% endif %}
+            <a href="{{ url_for('logout') }}" class="standard-button">Logout</a>
+        </div>
+    {% else %}
+        <div class="links">
+            <a href="{{ url_for('login') }}" class="standard-button">Login</a>
+            <a href="{{ url_for('register') }}" class="standard-button">Register</a>
+        </div>
+    {% endif %}
+{% endblock %}

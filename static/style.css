@@ -1,0 +1,686 @@
+/* Default to Light Mode */
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4; /* Light background */
+    color: #333; /* Dark text */
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff; /* Light container background */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+    position: relative; /* Needed for absolute positioning of the toggle */
+}
+
+h1 {
+    text-align: center;
+    color: #333; /* Dark heading text */
+}
+
+/* Styles for the button container */
+.links {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;           /* Use flexbox for layout */
+    justify-content: center; /* Center items horizontally */
+    flex-wrap: wrap;        /* Allow items to wrap to the next line */
+}
+
+/* Standard Button Style */
+.standard-button {
+    padding: 10px 20px !important;          /*Consistent padding */
+    border-radius: 5px;         /*Consistent border radius*/
+    text-decoration: none;      /*Removes underlines*/
+    display: inline-block;     /*Maintains layout*/
+    white-space: nowrap;       /* Prevent text from wrapping */
+    color: #fff; /* Set the default text color to white */
+    background-color: #3498db;
+    transition: background-color 0.3s; /* Smooth transition for hover */
+    border: none; /* Remove default borders */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 16px !important; /* Enforce a consistent font size */
+    min-width: 100px; /* Minimum width to prevent text wrapping */
+    box-sizing: border-box;  /*Ensure padding is included in width*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Update Links styling with the standard button style */
+.links a {
+    background-color: #3498db; /*Set base colors */
+    color: #fff;               /*Set base colors*/
+    margin: 5px;                 /*Spacing*/
+    padding: 10px 20px !important; /*Consistent padding */
+    font-size: 16px !important; /* Enforce a consistent font size */
+    min-width: 100px; /* Minimum width to prevent text wrapping */
+    box-sizing: border-box;  /*Ensure padding is included in width*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Standardize hover effect */
+.links a:hover, .back-to-home-button:hover, form button:hover{
+    background-color: #0056b3;
+}
+
+/*Apply the standard button style*/
+.back-to-home-button {
+    transition: background-color 0.3s;
+}
+
+/* Style for the Back to Home Button Icon */
+.back-to-home-icon img {
+    width: 20px !important; /* Adjust as needed */
+    height: 20px !important; /* Adjust as needed */
+    vertical-align: middle;
+    margin-right: 5px; /* Space between icon and text (if you want text, otherwise remove) */
+    transition: filter 0.3s;
+    position: relative;
+    left: -10px; /* Shift the icon slightly to the right, adjust as needed*/
+    filter: var(--icon-filter);
+}
+
+.back-to-home-button.standard-button {
+  width: 35px !important; /* Set the fixed width */
+  min-width: 35px !important; /* Ensure it doesn't shrink smaller */
+  box-sizing: border-box !important; /* Include padding in the width */
+  white-space: nowrap !important; /* Prevent text from wrapping */
+  overflow: hidden !important; /* Hide any overflowing content */
+  text-overflow: ellipsis !important; /* Show ellipsis for overflowing text */
+}
+
+.back-to-home-icon:hover img {
+    filter: brightness(1.2);
+}
+
+body.dark-mode .back-to-home-icon img {
+    filter: invert(90%); /* Adjust invert percentage for desired effect */
+}
+
+/* Form buttons need the standard button style*/
+form button {
+    background-color: #28a745; /*Keep their color just use the style*/
+    border: none;              /*Remove the border*/
+    cursor: pointer;            /*Keep the cursor property*/
+    padding: 10px 20px !important; /*Consistent padding */
+    font-size: 16px !important; /* Enforce a consistent font size */
+    min-width: 100px; /* Minimum width to prevent text wrapping */
+    box-sizing: border-box;  /*Ensure padding is included in width*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Dark Mode Styles for Back to Home Button */
+body.dark-mode .back-to-home-button {
+    background-color: #3498db; /* A different shade of blue */
+}
+
+.links a:hover {
+    background-color: #0056b3;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="email"],
+form input[type="text"],
+form input[type="password"],
+form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff; /* Light input background */
+    color: #333; /* Dark input text */
+}
+
+form button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #2980b9;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212; /* Dark background */
+    color: #eee; /* Light text */
+}
+
+body.dark-mode .container {
+    background-color: #333; /* Dark container background */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode h1 {
+    color: #eee; /* Light heading text */
+}
+
+body.dark-mode form input[type="email"],
+body.dark-mode form input[type="text"],
+body.dark-mode form textarea {
+    background-color: #555; /* Dark input background */
+    color: #eee; /* Light input text */
+    border-color: #777;
+}
+
+/* Ensure links are visible in dark mode */
+body.dark-mode a {
+    color: #ffffff; /* A light blue color for links */
+}
+
+body.dark-mode a:hover {
+    color: #5dade2; /* A slightly darker blue on hover */
+}
+
+/* Toggle Switch Styles */
+.dark-mode-toggle {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    display: flex;
+    align-items: center;
+    color: #666; /* Default label color */
+}
+
+body.dark-mode .dark-mode-toggle {
+    color: #999; /* Dark mode label color */
+}
+
+.dark-mode-toggle input[type="checkbox"] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.dark-mode-toggle label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 50px;
+    height: 25px;
+    background: grey;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+    margin-left: 5px; /* Add some space between label and switch */
+}
+
+.dark-mode-toggle label:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+.dark-mode-toggle input:checked + label {
+    background: #3498db;
+}
+
+.dark-mode-toggle input:checked + label:after {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+}
+
+.dark-mode-toggle label:active:after {
+    width: 30px;
+}
+
+/* Alert Styles */
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Additional Styling for Links in Dark Mode */
+body.dark-mode .links a {
+    background-color: #3498db; /* A different shade of blue */
+    color: #fff;
+}
+
+body.dark-mode .links a:hover {
+    background-color: #2980b9; /* A darker shade of blue */
+}
+
+/* Ensure links are visible in dark mode */
+body.dark-mode a {
+    color: #ffffff; /* A light blue color for links */
+}
+
+body.dark-mode a:hover {
+    color: #5dade2; /* A slightly darker blue on hover */
+}
+
+.admin-container {
+    min-height: 85px; /* Or any value to be enough to not affect bottom */
+    position: relative; /* Needed for absolute positioning of the Back to Home button */
+}
+
+/* Back to Home Button */
+.back-to-home-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* Additional styling for template_notifications.html buttons */
+.template-notification-button {
+    font-size: 16px !important; /* Adjust as needed to match other buttons */
+    padding: 10px 20px !important; /* Slightly adjust padding if needed */
+    min-width: 100px;
+    box-sizing: border-box;  /*Ensure padding is included in width*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* User Table Styles */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.user-table th, .user-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-table th {
+    background-color: #f2f2f2;
+}
+
+.user-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+body.dark-mode .user-table th {
+    background-color: #444;
+    color: #eee;
+}
+
+body.dark-mode .user-table tbody tr:nth-child(even) {
+    background-color: #555;
+}
+
+body.dark-mode .user-table td {
+    border-bottom: 1px solid #555;
+}
+
+/* NEW STYLES FOR TOP LEFT BUTTON */
+.top-left-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex; /*  align items in the same line */
+    align-items: center;  /* Align items in the same line */
+}
+
+/* Style for the Previous button icon */
+.previous-button img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+    transition: filter 0.3s;
+    position: relative; /* Add this */
+    left: -2px; /* Shift the icon 3 pixels to the right */
+}
+
+.previous-button:hover img {
+  filter: brightness(1.2);
+}
+
+body.dark-mode .previous-button img {
+    filter: invert(90%); /* Adjust invert percentage for desired effect */
+}
+
+.previous-button.standard-button.top-left-button {
+    padding: 10px 10px !important; /* Adjust vertical and horizontal padding */
+    background-color: #3498db !important;
+    color: #fff !important;
+    transition: background-color 0.3s !important;
+    text-decoration: none !important;
+    border-radius: 5px !important;
+    width: 35px !important; /* Set the fixed width */
+    min-width: 35px !important; /* Ensure it doesn't shrink smaller */
+    box-sizing: border-box !important; /* Include padding in the width */
+    white-space: nowrap !important; /* Prevent text from wrapping */
+    overflow: hidden !important; /* Hide any overflowing content */
+    text-overflow: ellipsis !important; /* Show ellipsis for overflowing text */
+}
+
+.previous-button.standard-button.top-left-button:hover {
+    background-color: #0056b3 !important;
+}
+
+/* Button Group Styling */
+.button-group {
+    display: flex;              /* Use flexbox */
+    flex-wrap: wrap;            /* Allow wrapping to next line */
+    justify-content: flex-start; /* Align items to the start (left) */
+    gap: 10px;                  /* Space between buttons */
+    margin-top: 10px;           /* Add some top margin */
+}
+
+.button-group .standard-button {
+    margin-bottom: 1px;        /* Add bottom margin for spacing when wrapped */
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) { /* Adjusted max-width to include iPad */
+
+    .button-group {
+        justify-content: center; /* Center the buttons on smaller screens */
+    }
+
+    .admin-notifications-links {
+        flex-direction: row; /* Keep buttons in a row */
+        justify-content: space-around; /* Distribute buttons evenly */
+        align-items: stretch; /* Make items take full width */
+        flex-wrap: wrap;      /* Wrap to the next line when necessary */
+    }
+
+    .admin-notifications-links a {
+        margin: 5px;         /* Add some horizontal margin */
+        display: inline-block;   /* Make links stay inline-block */
+        width: 45%;
+        word-break: break-word;
+        box-sizing: border-box;   /* Ensure padding is included */
+    }
+
+    .back-to-home-button {
+        position: static;     /* Remove absolute positioning */
+        width: 100%;         /* Full width */
+        text-align: center;   /* Center the text */
+        margin-top: 10px;      /* Add some spacing at the top */
+        box-sizing: border-box;/* Ensure padding doesn't increase width */
+    }
+
+    .back-to-home-container {
+        position: static;
+    }
+
+     .container {
+        width: 95%; /* Take up more space on small screens */
+        margin: 10px auto;  /* Reduce margin */
+        padding: 15px;     /* Reduce padding */
+    }
+
+    /* User Table Styles for Smaller Screens */
+    .user-table {
+        display: block;
+        overflow-x: auto; /* Enable horizontal scrolling */
+    }
+
+    .user-table thead, .user-table tbody, .user-table tr, .user-table td, .user-table th {
+        display: block;
+        text-align: left; /* Align the text in block display */
+    }
+
+     .user-table th {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        background-color: #f2f2f2;
+    }
+
+    .user-table thead tr {
+        position: static; /* Remove absolute positioning */
+    }
+
+    .user-table td {
+        position: relative;
+        padding: 8px;  /* Reset padding */
+        border: none;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+        width: 100%;  /* Take the whole space */
+        box-sizing: border-box;  /* Padding within width */
+        word-break: break-word; /* Prevent words from overflowing */
+    }
+
+    .user-table td:before {
+        display: none; /* Remove labels */
+    }
+
+    /* Dark Mode Styles for User Table on Smaller Screens */
+    body.dark-mode .user-table td {
+        border-bottom: 1px solid #555;
+    }
+
+    /* Button Container for Previous and Back to Home */
+    .button-container {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        display: flex;
+        gap: 10px; /* Spacing between buttons */
+    }
+
+    .previous-button {
+        background-color: #3498db; /* A different shade of blue */
+        color: #fff;
+        transition: background-color 0.3s;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    .previous-button:hover {
+        background-color: #0056b3;
+    }
+
+    .top-left-button {
+      position: static; /*Remove absolute positioning*/
+      margin-bottom: 10px; /* Add a little space */
+    }
+
+}
+
+.password-container {
+    position: relative;
+}
+
+#togglePassword {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0px !important; /* Reset padding */
+    border: none;
+    background-color: transparent !important; /* Make background transparent */
+    cursor: pointer;
+    width: 35px; /* Adjust width to fit icon */
+    height: 35px; /* Adjust height to fit icon */
+    display: flex; /* Center the icon */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style the Password Icon */
+#togglePassword img {
+    width: 20px;
+    height: 20px;
+    position: relative;  /* Make the icon position relative */
+    right: -25px;         /* Shift the icon 5px to the right */
+}
+
+/* Style the sections */
+section {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider - the moving part */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 21px;
+    width: 21px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Create Template button margin */
+.create-template-margin {
+    margin-top: 10px;
+}
+
+/*Style the ON OFF value*/
+.slider-label {
+    display: inline-block; /*Keeps it on same line*/
+    width: 30px;  /*adjust*/
+    text-align: center; /*centers it*/
+    position: relative; /* Add this */
+    top: 4px; /* Adjust this value to move the text up or down */
+}
+
+/*Style the delete button*/
+.delete-account-button {
+    background-color: #dc3545; /* Red */
+    color: white;
+    display: block; /* Ensure it's on a new line */
+    margin-top: 10px;  /* Adds 10px of space */
+}
+
+/* User Table Styles */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.user-table th, .user-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-table th {
+    background-color: #f2f2f2;
+}
+
+.user-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+body.dark-mode .user-table th {
+    background-color: #444;
+    color: #eee;
+}
+
+body.dark-mode .user-table tbody tr:nth-child(even) {
+    background-color: #555;
+}
+
+body.dark-mode .user-table td {
+    border-bottom: 1px solid #555;
+}
+
+.admin-container {
+    padding-bottom: 20px;
+    position: relative;
+}
+
+/* Style the delete all button */
+.delete-all-button {
+    background-color: #dc3545;
+    color: white;
+}

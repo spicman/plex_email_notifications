@@ -1,0 +1,39 @@
+<!-- plex_email_notifications/templates/email_header.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .email-header {
+            background-color: #232323; /* Dark background */
+            color: #fff; /* White text */
+            padding: 20px; /* Increased padding */
+            text-align: center;
+            border-radius: 10px; /* Rounded corners */
+            margin-bottom: 10px; /* Space below the header */
+        }
+
+        .email-header img {
+            max-width: 150px; /* Adjusted image size */
+            height: auto;
+            margin-bottom: 10px; /* Space below the image */
+        }
+
+        .email-header h1 {
+            font-size: 24px; /* Adjusted title size */
+            margin: 0; /* Remove default margin */
+            font-weight: bold; /* Make it bold */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Add a subtle text shadow */
+        }
+    </style>
+</head>
+<body>
+    <div class="email-header">
+        {% if image_url %}
+            <img src="{{ image_url }}" alt="Plex Notification Header">
+        {% else %}
+            <img src="{{ url_for('static', filename='plex_header.png') }}" alt="Plex Notification Header">
+        {% endif %}
+        <h1>Plex Notification</h1>
+    </div>
+</body>
+</html>

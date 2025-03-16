@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if template %}Edit Template{% else %}Create Template{% endif %}{% endblock %}
+
+{% block content %}
+    <h1>{% if template %}Edit Template{% else %}Create New Template{% endif %}</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="" method="post">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" value="{{ template.subject if template }}" required><br><br>
+
+        <label for="message">Message:</label>
+        <div id="editor" style="height: 300px;"></div>
+        <input type="hidden" id="message-input" name="message">
+        <br><br>
+
+        <div class="button-group">
+            <button type="submit" class="standard-button" onclick="getQuillContent()">{% if template %}Update{% else %}Create{% endif %} Template</button>
+            {% if template %}
+                <button type="submit" class="standard-button" name="action" value="send" onclick="getQuillContent()">Send Notification</button>
+                <button type="submit" class="standard-button" name="action" value="test" onclick="getQuillContent()">Test</button>
+                <button type="submit" name="action" value="delete" onclick="return confirm('Are you sure you want to delete this template?');" class = "standard-button">Delete</button>
+            {% endif %}
+        </div>
+    </form>
+
+    {% if preview_content %}
+        <h2>Preview:</h2>
+        <div class="preview">
+            {{ preview_content | safe }}
+        </div>
+    {% endif %}
+
+    <link href="{{ url_for('static', filename='quill/quill.snow.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='quill/quill.js') }}"></script>
+    <script>
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+
+        // Set the editor content from the database
+        {% if template %}
+            quill.root.innerHTML = '{{ template.message | safe }}';
+        {% endif %}
+
+        function getQuillContent() {
+            var quillContent = document.querySelector('input[name="message"]');
+            quillContent.value = quill.root.innerHTML;
+        }
+    </script>
+{% endblock %}

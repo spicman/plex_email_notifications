@@ -1,0 +1,5 @@
+Flask
+python-dotenv
+Flask-Login
+Flask-Bcrypt
+bleach

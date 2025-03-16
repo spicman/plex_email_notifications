@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Plex Email Notifications{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+
+    <div class="container">
+        <div class="dark-mode-toggle">
+            <span id="dark-mode-label">Light Mode</span>
+            <input type="checkbox" id="dark-mode-checkbox">
+            <label for="dark-mode-checkbox"></label>
+        </div>
+
+        <!-- Previous Button (Conditional) -->
+        {% if request.endpoint != 'index' and request.referrer %}
+            <a href="{{ request.referrer }}" class="previous-button standard-button top-left-button">
+                <img src="{{ url_for('static', filename='icons/arrow-left-circle.svg') }}" alt="Previous" style="vertical-align: middle; margin-right: 5px;">
+            </a>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+
+        <!-- Back to Home Button (Conditional) -->
+        {% if request.endpoint != 'index' %}
+            <div class="back-to-home-container">
+                <a href="{{ url_for('index') }}" class="back-to-home-button standard-button back-to-home-icon">
+                    <img src="{{ url_for('static', filename='icons/house.svg') }}" alt="Back to Home">
+                </a>
+            </div>
+        {% endif %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% block title %}Account Settings{% endblock %}
+
+{% block content %}
+    <h1>Account Settings</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('options') }}" method="post">
+        <section>
+            <h2>Email Address</h2>
+            <label for="email">New Email Address:</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}"><br><br>
+        </section>
+
+        <section>
+            <h2>Password</h2>
+            <label for="password">New Password:</label>
+            <input type="password" id="password" name="password"><br><br>
+
+            <label for="confirm_password">Confirm New Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password"><br><br>
+
+            <div id="password-strength"></div>
+        </section>
+
+        <section>
+            <h2>Notifications</h2>
+            <label for="notifications">Receive Notifications:</label>
+            <label class="switch">
+                <input type="checkbox" id="notifications" name="notifications" {% if user.subscribed_to_notifications %}checked{% endif %}>
+                <span class="slider round"></span>
+            </label>
+            {% if user.subscribed_to_notifications %}
+                <span class="slider-label">ON</span>
+            {% else %}
+                <span class="slider-label">OFF</span>
+            {% endif %}
+            <br><br>
+        </section>
+
+        <button type="submit" class="standard-button template-notification-button">Update Settings</button>
+    </form>
+
+    <form action="{{ url_for('delete_account') }}" method="post" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+        <button type="submit" class="standard-button template-notification-button delete-account-button">Delete Account</button>
+    </form>
+
+    <style>
+        /* Style the sections */
+        section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* The switch - the box around the slider */
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 50px;
+          height: 25px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        /* The slider - the moving part */
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          transition: .4s;
+        }
+
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 21px;
+          width: 21px;
+          left: 2px;
+          bottom: 2px;
+          background-color: white;
+          transition: .4s;
+        }
+
+        input:checked + .slider {
+          background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+          box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+          transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+          border-radius: 34px;
+        }
+
+        .slider.round:before {
+          border-radius: 50%;
+        }
+
+        /*Style the ON OFF value*/
+        .slider-label {
+            display: inline-block; /*Keeps it on same line*/
+            width: 30px;  /*adjust*/
+            text-align: center; /*centers it*/
+            position: relative; /* Add this */
+            top: 4px; /* Adjust this value to move the text up or down */
+        }
+
+        /*Style the delete button*/
+        .delete-account-button {
+            background-color: #dc3545; /* Red */
+            color: white;
+            display: block; /* Ensure it's on a new line */
+            margin-top: 10px;  /* Adds 10px of space */
+        }
+    </style>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const passwordStrengthDiv = document.getElementById('password-strength');
+
+        passwordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+            let strength = 0;
+
+            if (password.length >= 8) {
+                strength += 1;
+            }
+            if (password.match(/[a-z]+/)) {
+                strength += 1;
+            }
+            if (password.match(/[A-Z]+/)) {
+                strength += 1;
+            }
+            if (password.match(/[0-9]+/)) {
+                strength += 1;
+            }
+            if (password.match(/[^a-zA-Z0-9]+/)) {
+                strength += 1;
+            }
+
+            let strengthText = '';
+            let strengthColor = '';
+
+            if (strength === 0) {
+                strengthText = 'Very Weak';
+                strengthColor = 'red';
+            } else if (strength === 1) {
+                strengthText = 'Weak';
+                strengthColor = 'red';
+            } else if (strength <= 3) {
+                strengthText = 'Medium';
+                strengthColor = 'orange';
+            } else if (strength <= 5) {
+                strengthText = 'Strong';
+                strengthColor = 'green';
+            }
+
+            passwordStrengthDiv.textContent = 'Password Strength: ' + strengthText;
+            passwordStrengthDiv.style.color = strengthColor;
+        });
+    </script>
+{% endblock %}
