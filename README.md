@@ -1,4 +1,11 @@
-Google AI Studio helped create the following Plex Email Notification system.  It has the following structure and files.  It has been containerized in Docker.
+Google AI Studio helped create the following Plex Email Notification system.  But you can easily modifying it for any kind of notifications.  I am not providing support just thought I would share.
+
+Tecnologies:
+- Python/Flask
+- SQLite DB
+
+
+It has the following structure and files.  It has been containerized in Docker.
 
 ```
 ################################################################
